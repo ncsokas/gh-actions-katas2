@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Clone down repository 
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Run build-app.sh
         run: ci/build-app.sh
       - name: Run unit-test-app.sh
