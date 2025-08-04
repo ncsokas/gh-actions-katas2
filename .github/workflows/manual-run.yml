@@ -1,0 +1,32 @@
+name: Manual Test Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      homedrive:
+        description: 'The home drive on the machine'
+        required: true
+        default: '/home'
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options: [info, warning, debug]
+      run_matrix:
+        description: 'Run the matrix jobs'
+        required: true
+        type: boolean
+
+jobs:
+  test-inputs:
+    runs-on: ubuntu-latest
+    # This line is needed if you use the 'environment' input type
+    environment: ${{ github.event.inputs.environment }}
+    
+    steps:
+      - name: Print the inputs
+        run: |
+          echo "🏡 Home Drive: ${{ github.event.inputs.homedrive }}"
+          echo "🪵 Log Level: ${{ github.event.inputs.logLevel }}"
+          echo "matrix️ Run Matrix: ${{ github.event.inputs.run_matrix }}"
