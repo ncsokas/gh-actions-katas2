@@ -40,7 +40,6 @@ jobs:
       - name: Run linting
         uses: super-linter/super-linter/slim@v7
         env:
-          DEFAULT_BRANCH: "dev/**"
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DISABLE_ERRORS: true
 
