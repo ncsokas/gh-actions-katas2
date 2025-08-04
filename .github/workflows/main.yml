@@ -1,16 +1,14 @@
 name: CI
 
-on: 
-  workflow_dispatch:
+on: [push]
 
 jobs:
   Build:
     runs-on:  ubuntu-latest
+    container:
+      image: gradle:6-jdk11
     steps:
-      - uses: actions/checkout@v4
-      - name: Run a one-line script
-        run: echo Hello, ${{ github.actor }}!
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Clone down repository 
+        uses: actions/checkout@v4
+      - name: Run build-app.sh
+        run: ci/build-app.sh
