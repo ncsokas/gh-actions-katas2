@@ -32,6 +32,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: Build
     steps:
+      - name: Clone down repository 
+        uses: actions/checkout@v4
       - name: Download code
         uses: actions/download-artifact@v4
         with:
@@ -40,6 +42,7 @@ jobs:
       - name: Run linting
         uses: super-linter/super-linter/slim@v7
         env:
+          DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DISABLE_ERRORS: true
 
@@ -49,6 +52,8 @@ jobs:
     permissions:
       packages: write
     steps:
+      - name: Clone down repository 
+        uses: actions/checkout@v4
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
